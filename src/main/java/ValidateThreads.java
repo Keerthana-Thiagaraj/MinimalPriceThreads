@@ -2,12 +2,17 @@ import java.util.Arrays;
 
 public class ValidateThreads {
 
-    public static void validateThreads(int[] threads) throws Exception {
+    public static boolean validateThreadsNotEmpty(int[] threads) throws Exception {
         if (!(threads.length > 0)) {
-            throw new Exception("Please enter additional elements");
+            throw new Exception("Threads cannot be empty");
         }
-        if (!(Arrays.stream(threads).max().getAsInt() <= Integer.MAX_VALUE)) {
-            System.out.println("Please enter valid threads");
+        return true;
+    }
+
+    public static boolean validateThreadPositiveValue(int[] threads) throws Exception {
+        if (!(Arrays.stream(threads).allMatch(t -> t > 0))) {
+            throw new Exception("Threads must hold a positive value");
         }
+        return true;
     }
 }
